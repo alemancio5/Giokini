@@ -1,0 +1,90 @@
+body {
+    margin: 10px;
+    padding: 10px;
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(159, 210, 255);
+}
+p {
+    font-family: "Audiowide", sans-serif;
+    margin: 10px;
+    font-size: 16px;
+}
+
+button {
+    font-family: "Audiowide", sans-serif;
+    color: black;
+    font-size: 16px;
+    margin: 10px;
+    padding: 10px;
+    width: 100px;
+    background-color: rgb(75, 167, 247);
+    border-radius: 8px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    cursor: pointer;
+}
+
+select {
+    font-family: "Audiowide", sans-serif;
+    color: black;
+    font-size: 16px;
+    margin: 10px;
+    padding: 10px;
+    width: 150px;
+    background-color: white;
+    border-radius: 8px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+#grid {
+    font-family: "Audiowide", sans-serif;
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(6, 80px);
+    gap: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.card {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 2px solid black;
+    background-color: rgb(75, 167, 247);
+    cursor: pointer;
+    user-select: none;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+    visibility: hidden;
+}
+
+.hidden {
+    background-color: rgb(75, 167, 247);
+}
+
+.matched {
+    border: 2px solid black;
+    background-color: transparent;
+    cursor: default;
+}

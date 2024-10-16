@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <title>Menu</title>
+    <style>
+        body {
+            font-family: "Audiowide", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background-color: #d1d1d1;
+            border-radius: 8px;
+            box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.3);
+            color: black;
+        }
+
+        #content {
+            width: 100%;
+            height: calc(100vh - 61px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Mobile style */
+        @media (max-width: 768px) {
+            nav {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+                margin-bottom: 5px;
+                border-bottom: 1px solid black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Menu -->
+    <nav>
+        <a href="#" style="color: rgb(255, 255, 255);">Giokini</a>
+        <a href="#" onclick="loadWebApp('Angles')" style="color: rgb(60, 209, 89);">Angles</a>
+        <a href="#" onclick="loadWebApp('Memory')" style="color: rgb(75, 167, 247);">Memory</a>
+    </nav>
+
+    <!-- View of the game -->
+    <div id="content">
+        <iframe id="webapp" src="Angles/index.html"></iframe>
+    </div>
+
+    <script>
+        function loadWebApp(webapp) {
+            document.getElementById('webapp').src = webapp + '/index.html';
+        }
+    </script>
+</body>
+</html>
