@@ -47,32 +47,22 @@
             border: none;
         }
 
-        /* Mobile style */
-        @media (max-width: 768px) {
-            nav {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
+        .game-links {
+            display: none;
+        }
 
-            nav a {
-                display: block;
-                width: 100%;
-                text-align: center;
-                padding: 10px;
-                margin-bottom: 5px;
-                border-bottom: 1px solid black;
-            }
+        .show .game-links {
+            display: inline-block;
         }
     </style>
 </head>
 
 <body>
     <!-- Menu -->
-    <nav>
-        <a href="#" style="color: rgb(255, 255, 255);">Giokini</a>
-        <a href="#" onclick="loadWebApp('Angles')" style="color: rgb(60, 209, 89);">Angles</a>
-        <a href="#" onclick="loadWebApp('Memory')" style="color: rgb(75, 167, 247);">Memory</a>
+    <nav id="navBar">
+        <a href="#" id="giokini" style="color: rgb(255, 255, 255);">Giokini</a>
+        <a href="#" onclick="loadWebApp('Angles')" class="game-links" style="color: rgb(60, 209, 89);">Angles</a>
+        <a href="#" onclick="loadWebApp('Memory')" class="game-links" style="color: rgb(75, 167, 247);">Memory</a>
     </nav>
 
     <!-- View of the game -->
@@ -81,17 +71,16 @@
     </div>
 
     <script>
-        // Load the web application clicked
+        // Load the webapp
         function loadWebApp(webapp) {
             document.getElementById('webapp').src = webapp + '/index.html';
         }
 
-        // Treat Giokini as a logo only
-        document.querySelector('nav a:first-child').addEventListener('mouseover', function(event) {
-            event.target.style.backgroundColor = 'transparent';
-            event.target.style.color = 'rgb(255, 255, 255)';
-            event.target.style.cursor = 'default';
+        // Show/hide the game links
+        document.getElementById('giokini').addEventListener('click', function () {
+            document.getElementById('navBar').classList.toggle('show');
         });
     </script>
 </body>
+
 </html>
