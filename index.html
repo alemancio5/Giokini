@@ -81,9 +81,17 @@
     </div>
 
     <script>
+        // Load the web application clicked
         function loadWebApp(webapp) {
             document.getElementById('webapp').src = webapp + '/index.html';
         }
+
+        // Treat Giokini as a logo only
+        document.querySelector('nav a:first-child').addEventListener('mouseover', function(event) {
+            event.target.style.backgroundColor = 'transparent';
+            event.target.style.color = 'rgb(255, 255, 255)';
+            event.target.style.cursor = 'default';
+        });
     </script>
 </body>
 </html>
