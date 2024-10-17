@@ -39,7 +39,7 @@ function gameLoop() {
     if (!gameOver) {
         moveDown();
         draw();
-        setTimeout(gameLoop, 500);
+        setTimeout(gameLoop, 1200);
     }
 }
 
