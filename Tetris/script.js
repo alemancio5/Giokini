@@ -1,7 +1,13 @@
 const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
+canvas.focus();
 const scoreElement = document.getElementById("score");
 const restartButton = document.getElementById("restart");
+const up = document.getElementById("up");
+const left = document.getElementById("left");
+const right = document.getElementById("right");
+const rotate = document.getElementById("rotate");
+const controls = document.getElementById("controls");
 
 const COLS = 10;
 const ROWS = 15;
@@ -152,6 +158,7 @@ function clearLines() {
 function endGame() {
     gameOver = true;
     restartButton.style.display = "block";
+    controls.style.display = "none";
 }
 
 restartButton.addEventListener("click", () => {
@@ -163,6 +170,7 @@ restartButton.addEventListener("click", () => {
     scoreElement.textContent = score;
     gameOver = false;
     restartButton.style.display = "none";
+    controls.style.display = "block";
     gameLoop();
 });
 
