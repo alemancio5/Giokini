@@ -70,7 +70,7 @@ function drawBoard() {
     board.forEach((row, y) => {
         row.forEach((cell, x) => {
             if (cell) {
-                ctx.fillStyle = 'cyan';
+                ctx.fillStyle = 'lightred';
                 ctx.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
                 ctx.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
             }
@@ -82,7 +82,7 @@ function drawTetromino() {
     tetromino.forEach((row, y) => {
         row.forEach((cell, x) => {
             if (cell) {
-                ctx.fillStyle = 'green';
+                ctx.fillStyle = 'red'; // Light brown color
                 ctx.fillRect((posX + x) * BLOCK_SIZE, (posY + y) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
                 ctx.strokeRect((posX + x) * BLOCK_SIZE, (posY + y) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
             }
