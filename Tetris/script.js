@@ -27,9 +27,10 @@ let tetromino = createTetromino();
 let posX = 3;
 let posY = 0;
 
-canvas.addEventListener('click', handleMouseClick);
+// Aggiungiamo i listener per eventi di click e touch
+canvas.addEventListener('click', handleInput);
+canvas.addEventListener('touchstart', handleInput); // Per dispositivi mobili
 
-// Aggiungiamo anche il listener per la tastiera
 document.addEventListener('keydown', handleKeyPress);
 
 function gameLoop() {
@@ -169,10 +170,17 @@ restartButton.addEventListener("click", () => {
     gameLoop();
 });
 
-// Funzione per il controllo tramite mouse
-function handleMouseClick(event) {
+// Funzione per il controllo tramite mouse e touch
+function handleInput(event) {
+    let clientX;
+    if (event.type === 'touchstart') {
+        clientX = event.touches[0].clientX;
+    } else {
+        clientX = event.clientX;
+    }
+
     const canvasRect = canvas.getBoundingClientRect();
-    const clickX = event.clientX - canvasRect.left;
+    const clickX = clientX - canvasRect.left;
     const canvasThird = canvas.width / 3;
     
     if (clickX < canvasThird) {
