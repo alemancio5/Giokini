@@ -16,14 +16,11 @@
         nav {
             background-color: black;
             padding: 10px 10px;
-            padding-left: 10px;
-            text-align: center;
             display: flex;
-            justify-content: center;
-            overflow-x: auto;
             white-space: nowrap;
             scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
+            overflow-x: hidden;
+            cursor: normal;
         }
 
         nav a {
@@ -31,14 +28,6 @@
             padding: 10px 10px;
             text-decoration: none;
             display: inline-block;
-        }
-
-        nav a:first-child {
-            padding-left: 20px; /* Aggiungi distanziamento a sinistra */
-        }
-
-        nav a:last-child {
-            padding-right: 20px; /* Aggiungi distanziamento a destra */
         }
 
         nav a:hover {
@@ -70,7 +59,7 @@
 
 <body>
     <!-- Menu -->
-    <nav>
+    <nav id="menu">
         <a href="#" id="giokini" style="color: rgb(255, 255, 255);">Giokini</a>
         <a href="#" onclick="loadWebApp('Angles')" style="color: rgb(60, 209, 89);">Angles</a>
         <a href="#" onclick="loadWebApp('Memory')" style="color: rgb(75, 167, 247);">Memory</a>
@@ -93,6 +82,7 @@
         document.querySelector('nav a:first-child').addEventListener('mouseover', function(event) {
             event.target.style.backgroundColor = 'transparent';
             event.target.style.color = 'rgb(255, 255, 255)';
+            event.target.style.cursor = 'default';
         });
     </script>
 </body>
