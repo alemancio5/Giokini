@@ -4,7 +4,7 @@ const scoreElement = document.getElementById("score");
 const restartButton = document.getElementById("restart");
 
 const COLS = 10;
-const ROWS = 20;
+const ROWS = 15;
 const BLOCK_SIZE = 30;
 let score = 0;
 let gameOver = false;
@@ -26,10 +26,6 @@ let board = createBoard(ROWS, COLS);
 let tetromino = createTetromino();
 let posX = 3;
 let posY = 0;
-
-// Aggiungiamo i listener per eventi di click e touch
-canvas.addEventListener('click', handleInput);
-canvas.addEventListener('touchstart', handleInput); // Per dispositivi mobili
 
 document.addEventListener('keydown', handleKeyPress);
 
@@ -78,7 +74,7 @@ function drawTetromino() {
 
 function drawRoundedRect(x, y, color) {
     const padding = 2;
-    const size = BLOCK_SIZE - 2 * padding; // Reduce size to account for border
+    const size = BLOCK_SIZE - 2 * padding;
 
     ctx.fillStyle = color;
     ctx.strokeStyle = 'black';
@@ -170,66 +166,83 @@ restartButton.addEventListener("click", () => {
     gameLoop();
 });
 
-// Funzione per il controllo tramite mouse e touch
-function handleInput(event) {
-    let clientX;
-    if (event.type === 'touchstart') {
-        clientX = event.touches[0].clientX;
-    } else {
-        clientX = event.clientX;
-    }
-
+function handleMouseClick(event) {
     const canvasRect = canvas.getBoundingClientRect();
-    const clickX = clientX - canvasRect.left;
+    const clickX = event.clientX - canvasRect.left;
     const canvasThird = canvas.width / 3;
     
     if (clickX < canvasThird) {
-        // Sposta tetromino a sinistra
         if (!collision(-1, 0)) {
             posX--;
             draw();
         }
     } else if (clickX > canvasThird * 2) {
-        // Sposta tetromino a destra
         if (!collision(1, 0)) {
             posX++;
             draw();
         }
     } else {
-        // Ruota il tetromino
         rotateTetromino();
         draw();
     }
 }
 
-// Funzione per il controllo tramite tastiera (frecce e WASD)
+document.getElementById('left').addEventListener('click', () => {
+    if (!collision(1, 0)) {
+        posX++;
+        draw();
+    }
+});
+
+document.getElementById('right').addEventListener('click', () => {
+    if (!collision(-1, 0)) {
+        posX--;
+        draw();
+    }
+});
+
+document.getElementById('rotate').addEventListener('click', () => {
+    rotateTetromino();
+    draw();
+});
+
+document.getElementById('up').addEventListener('click', () => {
+    if (!collision(0, 1)) {
+        posY++;
+        draw();
+    }
+});
+
 function handleKeyPress(event) {
     if (!gameOver) {
         switch (event.key) {
-            // Frecce direzionali
-            case 'ArrowLeft':
-            case 'a': // WASD
+            case 'ArrowRight':
+            case 'd':
+            case 'D':
                 if (!collision(-1, 0)) {
                     posX--;
                     draw();
                 }
                 break;
-            case 'ArrowRight':
-            case 'd': // WASD
+            case 'ArrowLeft':
+            case 'a':
+            case 'A':
                 if (!collision(1, 0)) {
                     posX++;
                     draw();
                 }
                 break;
-            case 'ArrowDown':
-            case 's': // WASD
+            case 'ArrowUp':
+            case 'w':
+            case 'W':
                 if (!collision(0, 1)) {
                     posY++;
                     draw();
                 }
                 break;
-            case 'ArrowUp':
-            case 'w': // WASD
+            case 'ArrowDown':
+            case 's':
+            case 'S':
                 rotateTetromino();
                 draw();
                 break;

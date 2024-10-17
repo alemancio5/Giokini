@@ -20,6 +20,7 @@ canvas {
     border-radius: 8px;
     margin: 10px;
     padding: 10px;
+    rotate: 180deg;
 }
 
 button {
@@ -27,12 +28,11 @@ button {
     color: black;
     font-size: 16px;
     margin: 10px;
-    padding: 10px;
-    width: 100px;
+    padding: 10px 20px;
     background-color: red;
     border-radius: 8px;
-    border-color: black;
     border-width: 2px;
+    border-color: black;
     border-style: solid;
     cursor: pointer;
 }
