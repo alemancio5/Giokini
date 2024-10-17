@@ -1,7 +1,7 @@
-const canvas = document.getElementById("game-board");
+const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
 const scoreElement = document.getElementById("score");
-const restartButton = document.getElementById("restart-button");
+const restartButton = document.getElementById("restart");
 
 const COLS = 10;
 const ROWS = 20;
