@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tetris</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <link rel="stylesheet" href="style.css">
+    <title>Tetris</title>
 </head>
 <body>
-    <div id="game-container">
-        <canvas id="game-board" width="300" height="600"></canvas>
-        <div id="info">
-            <p>Punteggio: <span id="score">0</span></p>
-            <button id="restart-button" style="display: none;">Restart</button>
-        </div>
-    </div>
+    <p>Score: <span id="score">0</span></p>
+    <button id="restart-button" style="display: none;">Restart</button>
+    <canvas id="game-board" width="300" height="600"></canvas>
     <script src="script.js"></script>
 </body>
 </html>
