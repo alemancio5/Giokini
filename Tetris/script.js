@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 canvas.focus();
 const scoreElement = document.getElementById("score");
 const restartButton = document.getElementById("restart");
-const up = document.getElementById("up");
+const down = document.getElementById("down");
 const left = document.getElementById("left");
 const right = document.getElementById("right");
 const rotate = document.getElementById("rotate");
@@ -39,7 +39,7 @@ function gameLoop() {
     if (!gameOver) {
         moveDown();
         draw();
-        setTimeout(gameLoop, 1200);
+        setTimeout(gameLoop, 1300);
     }
 }
 
@@ -195,14 +195,14 @@ function handleMouseClick(event) {
     }
 }
 
-document.getElementById('left').addEventListener('click', () => {
+document.getElementById('right').addEventListener('click', () => {
     if (!collision(1, 0)) {
         posX++;
         draw();
     }
 });
 
-document.getElementById('right').addEventListener('click', () => {
+document.getElementById('left').addEventListener('click', () => {
     if (!collision(-1, 0)) {
         posX--;
         draw();
@@ -214,7 +214,7 @@ document.getElementById('rotate').addEventListener('click', () => {
     draw();
 });
 
-document.getElementById('up').addEventListener('click', () => {
+document.getElementById('down').addEventListener('click', () => {
     if (!collision(0, 1)) {
         posY++;
         draw();
@@ -224,33 +224,33 @@ document.getElementById('up').addEventListener('click', () => {
 function handleKeyPress(event) {
     if (!gameOver) {
         switch (event.key) {
-            case 'ArrowRight':
-            case 'd':
+            case 'ArrowLeft':
+            case 'a':
             case 'D':
                 if (!collision(-1, 0)) {
                     posX--;
                     draw();
                 }
                 break;
-            case 'ArrowLeft':
-            case 'a':
-            case 'A':
+            case 'ArrowRight':
+            case 'd':
+            case 'D':
                 if (!collision(1, 0)) {
                     posX++;
-                    draw();
-                }
-                break;
-            case 'ArrowUp':
-            case 'w':
-            case 'W':
-                if (!collision(0, 1)) {
-                    posY++;
                     draw();
                 }
                 break;
             case 'ArrowDown':
             case 's':
             case 'S':
+                if (!collision(0, 1)) {
+                    posY++;
+                    draw();
+                }
+                break;
+            case 'ArrowUp':
+            case 'w':
+            case 'W':
                 rotateTetromino();
                 draw();
                 break;
