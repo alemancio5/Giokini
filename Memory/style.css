@@ -55,6 +55,8 @@ select {
     grid-template-rows: repeat(6, 80px);
     gap: 10px;
     margin: 10px;
+    border: 2px dashed black;
+    border-radius: 8px;
     padding: 10px;
 }
 
