@@ -27,6 +27,11 @@ let tetromino = createTetromino();
 let posX = 3;
 let posY = 0;
 
+canvas.addEventListener('click', handleMouseClick);
+
+// Aggiungiamo anche il listener per la tastiera
+document.addEventListener('keydown', handleKeyPress);
+
 function gameLoop() {
     if (!gameOver) {
         moveDown();
@@ -93,7 +98,6 @@ function drawRoundedRect(x, y, color) {
     ctx.fill();
     ctx.stroke();
 }
-
 
 function moveDown() {
     if (!collision(0, 1)) {
@@ -165,30 +169,59 @@ restartButton.addEventListener("click", () => {
     gameLoop();
 });
 
-document.addEventListener('keydown', handleKeyPress);
+// Funzione per il controllo tramite mouse
+function handleMouseClick(event) {
+    const canvasRect = canvas.getBoundingClientRect();
+    const clickX = event.clientX - canvasRect.left;
+    const canvasThird = canvas.width / 3;
+    
+    if (clickX < canvasThird) {
+        // Sposta tetromino a sinistra
+        if (!collision(-1, 0)) {
+            posX--;
+            draw();
+        }
+    } else if (clickX > canvasThird * 2) {
+        // Sposta tetromino a destra
+        if (!collision(1, 0)) {
+            posX++;
+            draw();
+        }
+    } else {
+        // Ruota il tetromino
+        rotateTetromino();
+        draw();
+    }
+}
 
+// Funzione per il controllo tramite tastiera (frecce e WASD)
 function handleKeyPress(event) {
     if (!gameOver) {
         switch (event.key) {
+            // Frecce direzionali
             case 'ArrowLeft':
+            case 'a': // WASD
                 if (!collision(-1, 0)) {
                     posX--;
                     draw();
                 }
                 break;
             case 'ArrowRight':
+            case 'd': // WASD
                 if (!collision(1, 0)) {
                     posX++;
                     draw();
                 }
                 break;
             case 'ArrowDown':
+            case 's': // WASD
                 if (!collision(0, 1)) {
                     posY++;
                     draw();
                 }
                 break;
             case 'ArrowUp':
+            case 'w': // WASD
                 rotateTetromino();
                 draw();
                 break;
