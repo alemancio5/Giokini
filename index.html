@@ -19,10 +19,12 @@
             text-align: center;
             display: flex;
             justify-content: center;
-            overflow-x: auto; /* Permette lo scorrimento orizzontale */
-            white-space: nowrap; /* Impedisce la rottura di linea degli elementi */
-            scroll-behavior: smooth; /* Scorrimento fluido */
-            -webkit-overflow-scrolling: touch; /* Aggiunge scorrimento con tocco su dispositivi mobili */
+            overflow-x: auto;
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            margin-left: 10px;
+            margin-right: 10px;
         }
 
         nav a {
@@ -79,17 +81,7 @@
             document.getElementById('webapp').src = webapp + '/index.html';
         }
 
-        // Toggle visibility of menu items when clicking on Giokini
-        let giokiniClicked = false;
-        document.getElementById('giokini').addEventListener('click', function() {
-            giokiniClicked = !giokiniClicked; // Toggle state
-            const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => {
-                item.classList.toggle('hidden', giokiniClicked); // Show/hide menu items
-            });
-        });
-
-        // Treat Giokini as a logo only for hover (but clickable)
+        // Treat Giokini as a logo for hover
         document.querySelector('nav a:first-child').addEventListener('mouseover', function(event) {
             event.target.style.backgroundColor = 'transparent';
             event.target.style.color = 'rgb(255, 255, 255)';
