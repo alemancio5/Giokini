@@ -12,37 +12,21 @@ let gameOver = false;
 canvas.width = COLS * BLOCK_SIZE;
 canvas.height = ROWS * BLOCK_SIZE;
 
-// Tetromino shapes
 const TETROMINOS = [
-    // I
     [[1, 1, 1, 1]],
-    // O
-    [[1, 1],
-     [1, 1]],
-    // T
-    [[0, 1, 0],
-     [1, 1, 1]],
-    // S
-    [[0, 1, 1],
-     [1, 1, 0]],
-    // Z
-    [[1, 1, 0],
-     [0, 1, 1]],
-    // J
-    [[1, 0, 0],
-     [1, 1, 1]],
-    // L
-    [[0, 0, 1],
-     [1, 1, 1]],
+    [[1, 1], [1, 1]],
+    [[0, 1, 0], [1, 1, 1]],
+    [[0, 1, 1], [1, 1, 0]],
+    [[1, 1, 0], [0, 1, 1]],
+    [[1, 0, 0], [1, 1, 1]],
+    [[0, 0, 1], [1, 1, 1]],
 ];
 
-// Game state
 let board = createBoard(ROWS, COLS);
 let tetromino = createTetromino();
 let posX = 3;
 let posY = 0;
 
-// Game loop
 function gameLoop() {
     if (!gameOver) {
         moveDown();
@@ -70,9 +54,7 @@ function drawBoard() {
     board.forEach((row, y) => {
         row.forEach((cell, x) => {
             if (cell) {
-                ctx.fillStyle = 'lightred';
-                ctx.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-                ctx.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+                drawRoundedRect(x * BLOCK_SIZE, y * BLOCK_SIZE, 'lightred');
             }
         });
     });
@@ -82,13 +64,36 @@ function drawTetromino() {
     tetromino.forEach((row, y) => {
         row.forEach((cell, x) => {
             if (cell) {
-                ctx.fillStyle = 'red'; // Light brown color
-                ctx.fillRect((posX + x) * BLOCK_SIZE, (posY + y) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-                ctx.strokeRect((posX + x) * BLOCK_SIZE, (posY + y) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+                drawRoundedRect((posX + x) * BLOCK_SIZE, (posY + y) * BLOCK_SIZE, 'red');
             }
         });
     });
 }
+
+function drawRoundedRect(x, y, color) {
+    const padding = 2;
+    const size = BLOCK_SIZE - 2 * padding; // Reduce size to account for border
+
+    ctx.fillStyle = color;
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+    ctx.moveTo(x + padding + 8, y + padding);
+    ctx.lineTo(x + padding + size - 8, y + padding);
+    ctx.quadraticCurveTo(x + padding + size, y + padding, x + padding + size, y + padding + 8);
+    ctx.lineTo(x + padding + size, y + padding + size - 8);
+    ctx.quadraticCurveTo(x + padding + size, y + padding + size, x + padding + size - 8, y + padding + size);
+    ctx.lineTo(x + padding + 8, y + padding + size);
+    ctx.quadraticCurveTo(x + padding, y + padding + size, x + padding, y + padding + size - 8);
+    ctx.lineTo(x + padding, y + padding + 8);
+    ctx.quadraticCurveTo(x + padding, y + padding, x + padding + 8, y + padding);
+    ctx.closePath();
+
+    ctx.fill();
+    ctx.stroke();
+}
+
 
 function moveDown() {
     if (!collision(0, 1)) {
@@ -160,7 +165,6 @@ restartButton.addEventListener("click", () => {
     gameLoop();
 });
 
-// Aggiungiamo l'evento keydown per i controlli
 document.addEventListener('keydown', handleKeyPress);
 
 function handleKeyPress(event) {
@@ -192,20 +196,14 @@ function handleKeyPress(event) {
     }
 }
 
-// Funzione per ruotare il tetromino
 function rotateTetromino() {
     const prevTetromino = tetromino.map(row => [...row]);
-    
-    // Trasponi e poi inverti le righe per ruotare in senso orario
     tetromino = tetromino[0].map((_, index) =>
         tetromino.map(row => row[index]).reverse()
     );
-    
-    // Se c'è una collisione dopo la rotazione, torna alla forma precedente
     if (collision(0, 0)) {
         tetromino = prevTetromino;
     }
 }
 
-// Inizio del gioco
 gameLoop();
