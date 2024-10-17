@@ -41,3 +41,19 @@ button {
     border-style: solid;
     cursor: pointer;
 }
+
+/*To disable the selection playing on mobile*/
+button {
+    -webkit-user-select: none; /* Disable text selection on Safari/iOS */
+    -moz-user-select: none; /* Disable text selection on Firefox */
+    -ms-user-select: none; /* Disable text selection on IE */
+    user-select: none; /* Disable text selection on modern browsers */
+    -webkit-tap-highlight-color: transparent; /* Disable blue highlight on touch */
+}
+
+body, p, canvas {
+    -webkit-user-select: none; /* Disable text selection for other elements */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
