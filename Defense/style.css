@@ -1,0 +1,43 @@
+body {
+    margin: 10px;
+    padding: 10px;
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(208, 162, 255);
+}
+
+p {
+    font-family: "Audiowide", sans-serif;
+    margin: 10px;
+    font-size: 16px;
+}
+
+canvas {
+    border: 2px dashed black;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+}
+
+canvas:focus {
+    outline: none;
+}
+
+button {
+    font-family: "Audiowide", sans-serif;
+    color: black;
+    font-size: 16px;
+    margin: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px 20px;
+    background-color: rgb(165, 74, 255);
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    cursor: pointer;
+}
