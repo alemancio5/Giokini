@@ -20,7 +20,7 @@ canvas {
     border-radius: 8px;
     margin: 10px;
     padding: 10px;
-}
+} 
 
 canvas:focus {
     outline: none;
